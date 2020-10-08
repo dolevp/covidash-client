@@ -1,52 +1,94 @@
-import { useTable } from 'react-table'
 import React from 'react'
 
-export default function Table({ columns, data }) {
-  const tableInstance = useTable({ columns, data })
+import MaUTable from '@material-ui/core/Table'
+import { TableSortLabel,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow } from '@material-ui/core'
+import { usePagination,
+  useSortBy,
+  useTable } from 'react-table'
+import './table.css'
+import TablePaginationActions from './tablePaginationActions'
+import { StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer } from './styled'
 
+export default function Table({ header, columns, data, useTableExtraProps }) {
   const {
     getTableProps,
-    getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
-  } = tableInstance
+    page,
+    gotoPage,
+    state: { pageIndex },
+  } = useTable(
+    {
+      columns,
+      data,
+      ...useTableExtraProps,
+    },
+    useSortBy,
+    usePagination,
+
+  )
+
+  const handleChangePage = (event, newPage) => {
+    gotoPage(newPage)
+  }
 
   return (
-    <table {...getTableProps()}>
-      <thead>
-        {
-        headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {
-              headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
+    <StyledTableContainer>
+      <h2>
+        {header}
+      </h2>
+      <MaUTable {...getTableProps()}>
+        <TableHead>
+          {headerGroups.map((headerGroup) => (
+            <TableRow {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <StyledHeaderCell
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                >
                   {column.render('Header')}
-                </th>
-              ))
-            }
-          </tr>
-        ))
-      }
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {
-        rows.map((row) => {
-          prepareRow(row)
-          return (
-            <tr {...row.getRowProps()}>
-              {
-                row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>
+                  {column.id !== 'selection' ? (
+                    <TableSortLabel
+                      active={column.isSorted}
+                      direction={column.isSortedDesc ? 'desc' : 'asc'}
+                    />
+                  ) : null}
+                </StyledHeaderCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableHead>
+        <TableBody>
+          {page.map((row) => {
+            prepareRow(row)
+            return (
+              <TableRow {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <StyledCell {...cell.getCellProps()}>
                     {cell.render('Cell')}
-                  </td>
-                ))
-              }
-            </tr>
-          )
-        })
-      }
-      </tbody>
-    </table>
+                  </StyledCell>
+                ))}
+              </TableRow>
+            )
+          })}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <StyledPagination
+              labelRowsPerPage={null}
+              colSpan={1}
+              count={data.length}
+              rowsPerPage={10}
+              page={pageIndex}
+              onChangePage={handleChangePage}
+              ActionsComponent={TablePaginationActions}
+            />
+          </TableRow>
+        </TableFooter>
+      </MaUTable>
+    </StyledTableContainer>
   )
 }

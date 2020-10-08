@@ -1,8 +1,23 @@
-body {
-    background-color: #363A42;
+html, body, #root, #app, .container, #app>div  {
+    display: flex;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
 }
-.title {
-    color: white;
-    font-family: sans-serif;
-    font-weight: 700;
+
+
+.widget {
+    flex: 1;
+    display: flex;
+    width: 60vw;
+    height: 36vw;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.tableContainer {
+    flex: 1;
+    margin: 0 auto;
+    padding: 1vw;
 }

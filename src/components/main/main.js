@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import './main.css'
 import axios from 'axios'
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import CountryTable from '../countryTable'
 import constants from '../../constants'
+import darkTheme from '../../theme'
+import './main.css'
 
 const { API_ROOT } = constants
 
@@ -19,12 +22,18 @@ export default function Main() {
   }, [])
 
   return (
-    <div className="container">
-      <header className="app-header">
-        <h2 className="title">
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="container">
+        <div
+          className="tableContainer widget"
+          style={{
+            backgroundColor: darkTheme.palette.secondary.main,
+          }}
+        >
           <CountryTable statistics={statistics} />
-        </h2>
-      </header>
-    </div>
+        </div>
+      </div>
+    </ThemeProvider>
   )
 }

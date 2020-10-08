@@ -3,18 +3,22 @@ import React, { useMemo } from 'react'
 import Table from '../table'
 
 function transformStatisticsToTableData(statistics) {
-  const totalInCategoryByCountry = {}
+  const totalInCategoryByCountry = {
+  }
 
   for (const [categoryName, categoryStats] of toPairs(statistics)) {
     for (const [countryName, countryStats] of toPairs(categoryStats)) {
-      totalInCategoryByCountry[countryName] = totalInCategoryByCountry[countryName] || {}
+      totalInCategoryByCountry[countryName] = totalInCategoryByCountry[countryName] || {
+      }
       totalInCategoryByCountry[countryName][categoryName] = Math.max(...values(countryStats))
     }
   }
   // Now we have something like { Israel: { recovered: 100, deaths: 0, confirmed: 100 } }
   // which we want to convert to [{ country: Israel, recovered: 100, deaths: 0, confirmed: 100 }]
   return Object.entries(totalInCategoryByCountry)
-    .map(([countryName, stats]) => ({ countryName, ...stats }))
+    .map(([countryName, stats]) => ({
+      countryName, ...stats,
+    }))
 }
 
 export default function CountryTable({ statistics }) {
@@ -43,8 +47,23 @@ export default function CountryTable({ statistics }) {
     ],
     [],
   )
+  const initialState = {
+    sortBy: [
+      {
+        id: 'confirmed',
+        desc: true,
+      },
+    ],
+  }
 
   return (
-    <Table columns={columns} data={data} />
+    <Table
+      columns={columns}
+      data={data}
+      header="Reported statistics by country"
+      useTableExtraProps={{
+        initialState,
+      }}
+    />
   )
 }
