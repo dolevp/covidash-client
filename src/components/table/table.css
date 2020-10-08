@@ -1,8 +1,15 @@
+.MuiTableContainer-root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    table-layout:fixed
+}
+
 .MuiTablePagination-root:last-child {
     border-bottom: none
 }
 
-.tablePaginationActionsContainer {
+.table-pagination-actions-container {
     flex-shrink: 0;
     margin-right: 100%
 }

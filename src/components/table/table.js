@@ -50,12 +50,10 @@ export default function Table({ header, columns, data, useTableExtraProps }) {
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                 >
                   {column.render('Header')}
-                  {column.id !== 'selection' ? (
-                    <TableSortLabel
-                      active={column.isSorted}
-                      direction={column.isSortedDesc ? 'desc' : 'asc'}
-                    />
-                  ) : null}
+                  <TableSortLabel
+                    active={column.isSorted}
+                    direction={column.isSortedDesc ? 'desc' : 'asc'}
+                  />
                 </StyledHeaderCell>
               ))}
             </TableRow>

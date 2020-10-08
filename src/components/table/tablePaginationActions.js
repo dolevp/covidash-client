@@ -30,7 +30,7 @@ export default function TablePaginationActions(props) {
   }
 
   return (
-    <div className="tablePaginationActionsContainer">
+    <div className="table-pagination-actions-container">
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}

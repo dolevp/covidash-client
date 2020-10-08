@@ -1,23 +1,33 @@
-html, body, #root, #app, .container, #app>div  {
-    display: flex;
-    height: 100%;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.widget {
+.widget-row {
     flex: 1;
     display: flex;
-    width: 60vw;
-    height: 36vw;
+    flex-direction: row;
+}
+
+.widget-row:last-child {
+    margin-top: 0
+}
+
+.widget-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.square-widget {
+    display: flex;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 10px;
+}
+.big-widget {
+    min-width: 50vw;
+    min-height: 30vw;
     border-radius: 12px;
-    margin: 0 auto;
 }
 
-.tableContainer {
-    flex: 1;
-    margin: 0 auto;
+.table-container {
     padding: 1vw;
 }

@@ -1,9 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const darkTheme = createMuiTheme({
+  spacing: 6,
   palette: {
     type: 'dark',
-    secondary: {
+    primary: {
       main: '#262B4A',
     },
     background: {
