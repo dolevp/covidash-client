@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Box } from '@material-ui/core'
+import { Box, LinearProgress, CircularProgress } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import CountryTable from '../countryTable'
 import constants from '../../constants'
 import darkTheme from '../../theme'
 import './main.css'
+import DataGraph from '../dataGraph'
 
 const { API_ROOT } = constants
 
@@ -49,7 +50,9 @@ export default function Main() {
               m={3}
             />
           </Box>
-          <Box className="big-widget" flex={5.6} m={3} bgcolor="primary.main" />
+          <Box className="big-widget" flex={5.6} m={3} bgcolor="primary.main">
+            <DataGraph />
+          </Box>
         </Box>
         <Box className="widget-row" m={3}>
           <Box
@@ -57,7 +60,9 @@ export default function Main() {
             bgcolor="primary.main"
             ml={3}
           >
-            <CountryTable statistics={statistics} />
+            {statistics
+              ? <CountryTable statistics={statistics} />
+              : <CircularProgress color="secondary" />}
           </Box>
         </Box>
       </Box>
