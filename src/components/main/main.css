@@ -11,23 +11,13 @@
 .widget-grid {
     flex: 1;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
-.square-widget {
-    display: flex;
-    width: 15vw;
-    height: 15vw;
-    border-radius: 10px;
-}
-.big-widget {
-    min-width: 50vw;
-    min-height: 30vw;
-    border-radius: 12px;
-}
-
-.table-container {
-    padding: 1vw;
+.app-header {
+    padding-right: 1vw;
+    display: inline;
+    text-align: left;
+    font-weight: 300;
 }

@@ -13,7 +13,7 @@ import './table.css'
 import TablePaginationActions from './tablePaginationActions'
 import { StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer } from './styled'
 
-export default function Table({ header, columns, data, useTableExtraProps }) {
+export default function Table({ columns, data, useTableExtraProps }) {
   const {
     getTableProps,
     headerGroups,
@@ -38,9 +38,6 @@ export default function Table({ header, columns, data, useTableExtraProps }) {
 
   return (
     <StyledTableContainer>
-      <h2>
-        {header}
-      </h2>
       <MaUTable {...getTableProps()}>
         <TableHead>
           {headerGroups.map((headerGroup) => (

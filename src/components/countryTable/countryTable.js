@@ -1,5 +1,6 @@
 import { toPairs, values } from 'lodash'
 import React, { useMemo } from 'react'
+import { CircularProgress } from '@material-ui/core'
 import Table from '../table'
 
 function transformStatisticsToTableData(statistics) {
@@ -55,12 +56,12 @@ export default function CountryTable({ statistics }) {
       },
     ],
   }
+  if (!statistics) return <CircularProgress color="secondary" />
 
   return (
     <Table
       columns={columns}
       data={data}
-      header="Reported statistics by country"
       useTableExtraProps={{
         initialState,
       }}

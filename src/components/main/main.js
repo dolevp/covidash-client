@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Box, LinearProgress, CircularProgress } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Select from 'react-select'
 import CountryTable from '../countryTable'
+import DataGraph from '../dataGraph'
 import constants from '../../constants'
 import darkTheme from '../../theme'
 import './main.css'
-import DataGraph from '../dataGraph'
+import { BigWidget, SquareWidget } from '../widgets'
 
 const { API_ROOT } = constants
+
+const options = [
+  {
+    value: 'chocolate', label: 'Chocolate',
+  },
+  {
+    value: 'strawberry', label: 'Strawberry',
+  },
+  {
+    value: 'vanilla', label: 'Vanilla',
+  },
+]
 
 export default function Main() {
   const [statistics, setStatistics] = useState()
@@ -26,44 +40,28 @@ export default function Main() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <Box m={3} ml={6} pt={2}>
+        <h1 className="app-header">covidash</h1>
+        {/* <Select options={options} /> */}
+      </Box>
       <Box>
         <Box className="widget-row" m={3}>
-          <Box className="widget-grid" flex={3}>
-            <Box
-              bgcolor="primary.main"
-              className="square-widget"
-              m={3}
-            />
-            <Box
-              bgcolor="primary.main"
-              className="square-widget"
-              m={3}
-            />
-            <Box
-              bgcolor="primary.main"
-              className="square-widget"
-              m={3}
-            />
-            <Box
-              bgcolor="primary.main"
-              className="square-widget"
-              m={3}
-            />
+          <Box className="widget-grid" flex={2}>
+            <SquareWidget />
+            {/* <SquareWidget /> */}
+            {/* <SquareWidget /> */}
+            {/* <SquareWidget /> */}
           </Box>
-          <Box className="big-widget" flex={5.6} m={3} bgcolor="primary.main">
-            <DataGraph />
-          </Box>
+          <BigWidget flex={3} title="Reported data over time">
+            <DataGraph statistics={statistics} />
+          </BigWidget>
         </Box>
         <Box className="widget-row" m={3}>
-          <Box
-            className="table-container big-widget"
-            bgcolor="primary.main"
-            ml={3}
+          <BigWidget
+            title="Worst performing countries"
           >
-            {statistics
-              ? <CountryTable statistics={statistics} />
-              : <CircularProgress color="secondary" />}
-          </Box>
+            <CountryTable statistics={statistics} />
+          </BigWidget>
         </Box>
       </Box>
     </ThemeProvider>
