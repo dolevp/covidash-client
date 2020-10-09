@@ -9,7 +9,7 @@ import DataGraph from '../dataGraph'
 import constants from '../../constants'
 import darkTheme from '../../theme'
 import './main.css'
-import { BigWidget, SquareWidget } from '../widgets'
+import { BigWidget, SmallWidget } from '../widgets'
 
 const { API_ROOT } = constants
 
@@ -40,17 +40,17 @@ export default function Main() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box m={3} ml={6} pt={2}>
-        <h1 className="app-header">covidash</h1>
+      <Box m={3} ml={6} pt={2} className="app-header">
+        <h1 className="app-title">covidash</h1>
         {/* <Select options={options} /> */}
       </Box>
       <Box>
         <Box className="widget-row" m={3}>
           <Box className="widget-grid" flex={2}>
-            <SquareWidget />
-            {/* <SquareWidget /> */}
-            {/* <SquareWidget /> */}
-            {/* <SquareWidget /> */}
+            <SmallWidget />
+            <SmallWidget />
+            <SmallWidget />
+            <SmallWidget />
           </Box>
           <BigWidget flex={3} title="Reported data over time">
             <DataGraph statistics={statistics} />
@@ -58,6 +58,7 @@ export default function Main() {
         </Box>
         <Box className="widget-row" m={3}>
           <BigWidget
+            mt={0}
             title="Worst performing countries"
           >
             <CountryTable statistics={statistics} />

@@ -12,6 +12,7 @@ import { usePagination,
 import './table.css'
 import TablePaginationActions from './tablePaginationActions'
 import { StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer } from './styled'
+import numberWithCommas from '../../utils'
 
 export default function Table({ columns, data, useTableExtraProps }) {
   const {
@@ -35,6 +36,12 @@ export default function Table({ columns, data, useTableExtraProps }) {
   const handleChangePage = (event, newPage) => {
     gotoPage(newPage)
   }
+
+  const transformCellValue = (cell) => (
+    {
+      ...cell, value: numberWithCommas(cell.value),
+    }
+  )
 
   return (
     <StyledTableContainer>
@@ -61,7 +68,7 @@ export default function Table({ columns, data, useTableExtraProps }) {
             prepareRow(row)
             return (
               <TableRow {...row.getRowProps()}>
-                {row.cells.map((cell) => (
+                {row.cells.map(transformCellValue).map((cell) => (
                   <StyledCell {...cell.getCellProps()}>
                     {cell.render('Cell')}
                   </StyledCell>

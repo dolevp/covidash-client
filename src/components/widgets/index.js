@@ -1,4 +1,4 @@
 import './widgets.css'
-import { SquareWidget, BigWidget } from './widgets'
+import { SmallWidget, BigWidget } from './widgets'
 
-export { SquareWidget, BigWidget }
+export { SmallWidget, BigWidget }

@@ -2,6 +2,7 @@ import { toPairs, values } from 'lodash'
 import React, { useMemo } from 'react'
 import { CircularProgress } from '@material-ui/core'
 import Table from '../table'
+import numberWithCommas from '../../utils'
 
 function transformStatisticsToTableData(statistics) {
   const totalInCategoryByCountry = {
@@ -36,14 +37,17 @@ export default function CountryTable({ statistics }) {
       {
         Header: 'Cases',
         accessor: 'confirmed',
+        Cell: (props) => numberWithCommas(props.value),
       },
       {
         Header: 'Recovered',
         accessor: 'recovered',
+        Cell: (props) => numberWithCommas(props.value),
       },
       {
         Header: 'Deaths',
         accessor: 'deaths',
+        Cell: (props) => numberWithCommas(props.value),
       },
     ],
     [],

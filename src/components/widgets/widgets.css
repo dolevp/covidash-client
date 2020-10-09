@@ -1,7 +1,6 @@
-.square-widget {
+.small-widget {
     border-radius: 10px;
-    width: 17vw;
-    height: 17vw;
+    flex: calc(100% / 3)
 }
 
 

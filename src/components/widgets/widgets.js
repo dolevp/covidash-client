@@ -5,6 +5,7 @@ function Widget({ children, title, ...props }) {
   return (
     <Box
       bgcolor="primary.main"
+      p={4}
       m={3}
       {...props}
     >
@@ -18,9 +19,17 @@ function Widget({ children, title, ...props }) {
   )
 }
 
-export function SquareWidget({ children, ...props }) {
+export function SmallWidget({ children, ...props }) {
   return (
-    <Widget m="auto" className="square-widget" {...props}>
+    <Widget className="small-widget" {...props}>
+      {children}
+    </Widget>
+  )
+}
+
+export function MediumWidget({ children, ...props }) {
+  return (
+    <Widget className="medium-widget" {...props}>
       {children}
     </Widget>
   )
