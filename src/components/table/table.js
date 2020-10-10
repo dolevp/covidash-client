@@ -12,7 +12,7 @@ import { usePagination,
 import './table.css'
 import TablePaginationActions from './tablePaginationActions'
 import { StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer } from './styled'
-import numberWithCommas from '../../utils'
+import { numberWithCommas } from '../../utils'
 
 export default function Table({ columns, data, useTableExtraProps }) {
   const {

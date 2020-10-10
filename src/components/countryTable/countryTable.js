@@ -1,8 +1,7 @@
 import { toPairs, values } from 'lodash'
 import React, { useMemo } from 'react'
-import { CircularProgress } from '@material-ui/core'
 import Table from '../table'
-import numberWithCommas from '../../utils'
+import { numberWithCommas } from '../../utils'
 
 function transformStatisticsToTableData(statistics) {
   const totalInCategoryByCountry = {
@@ -60,7 +59,6 @@ export default function CountryTable({ statistics }) {
       },
     ],
   }
-  if (!statistics) return <CircularProgress color="secondary" />
 
   return (
     <Table

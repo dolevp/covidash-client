@@ -10,6 +10,11 @@
     border-radius: 12px;
 }
 
+.medium-widget {
+    flex: 1;
+    border-radius: 12px;
+}
+
 .widget-title {
     font-weight: 300;
 }

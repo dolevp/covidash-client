@@ -4,6 +4,12 @@ const darkTheme = createMuiTheme({
   spacing: 6,
   palette: {
     type: 'dark',
+    common: {
+      white: '#fff',
+      red: 'rgb(255, 99, 132)',
+      green: 'rgb(99, 255, 70)',
+      blue: 'rgb(75, 192, 192)',
+    },
     primary: {
       main: '#262B4A',
     },

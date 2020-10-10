@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Line } from 'react-chartjs-2'
-import { Box, LinearProgress } from '@material-ui/core'
+import { Box, LinearProgress, useTheme } from '@material-ui/core'
 import { keys, values, toPairs } from 'lodash'
-import numberWithCommas from '../../utils'
+import { numberWithCommas } from '../../utils'
 import './dataGraph.css'
 
 function formatDate(dateString) {
@@ -14,10 +14,9 @@ function formatDate(dateString) {
 
 const GRAPH_FONT_COLOR = 'rgba(255, 255, 255, 0.2)'
 
-export default function DataGraph({ statistics }) {
-  const [country, setCountry] = useState('Australia')
-
-  if (!statistics) return <LinearProgress color="secondary" />
+export default function DataGraph({ statistics, country }) {
+  const theme = useTheme()
+  const { common: colors } = theme.palette
 
   const datasetBase = {
     backgroundColor: [
@@ -32,15 +31,15 @@ export default function DataGraph({ statistics }) {
 
   const statCategories = {
     confirmed: {
-      borderColor: 'rgba(75, 192, 192, 1)',
+      borderColor: colors.blue,
       label: '# of Cases',
     },
     recovered: {
-      borderColor: 'rgba(99, 255, 70, 1)',
+      borderColor: colors.green,
       label: '# of Recoveries',
     },
     deaths: {
-      borderColor: 'rgba(255, 99, 132, 1)',
+      borderColor: colors.red,
       label: '# of Deaths',
     },
   }
@@ -56,10 +55,14 @@ export default function DataGraph({ statistics }) {
 
   const lineChartOptions = {
     tooltips: {
+      intersect: false,
+      mode: 'index',
       callbacks: {
         label(tooltipItem, graph) {
-          const value = graph.datasets[0].data[tooltipItem.index]
-          return numberWithCommas(value)
+          const dataset = graph.datasets[tooltipItem.datasetIndex]
+          const dataLabel = dataset.label.replace('# of', '')
+          const value = numberWithCommas(dataset.data[tooltipItem.index])
+          return value + dataLabel
         },
       },
     },

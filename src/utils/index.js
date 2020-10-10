@@ -1,6 +1,9 @@
-function numberWithCommas(x) {
-  if (!Number.isInteger(x)) return x
+import { values } from 'lodash'
+
+export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export default numberWithCommas
+export function latestDataFromStatistics(countByDate) {
+  return Math.max(...values(countByDate))
+}
