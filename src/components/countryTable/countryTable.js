@@ -3,12 +3,18 @@ import React, { useMemo } from 'react'
 import Table from '../table'
 import { numberWithCommas } from '../../utils'
 
+const IGNORED_COUNTRY_NAMES = ['Global']
+
 function transformStatisticsToTableData(statistics) {
   const totalInCategoryByCountry = {
   }
 
   for (const [categoryName, categoryStats] of toPairs(statistics)) {
-    for (const [countryName, countryStats] of toPairs(categoryStats)) {
+    const filteredCountryStats = toPairs(categoryStats).filter(
+      ([countryName, _]) => !IGNORED_COUNTRY_NAMES.includes(countryName),
+    )
+
+    for (const [countryName, countryStats] of filteredCountryStats) {
       totalInCategoryByCountry[countryName] = totalInCategoryByCountry[countryName] || {
       }
       totalInCategoryByCountry[countryName][categoryName] = Math.max(...values(countryStats))

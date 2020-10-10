@@ -14,6 +14,7 @@ import { BigWidget, MediumWidget, SmallWidget } from '../widgets'
 import CompactInformation from '../compactInformation'
 import { latestDataFromStatistics } from '../../utils'
 import CountrySelect from '../countrySelect'
+import CountryAgainstGlobalRadar from '../countryAgainstGlobalRadar'
 
 const { API_ROOT } = constants
 
@@ -108,7 +109,9 @@ export default function Main() {
             >
               <CountryTable statistics={statistics} />
             </BigWidget>
-            <MediumWidget mt={0} />
+            <MediumWidget mt={0}>
+              <CountryAgainstGlobalRadar />
+            </MediumWidget>
           </Box>
         </Box>
       )
