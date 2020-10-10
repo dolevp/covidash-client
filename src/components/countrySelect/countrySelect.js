@@ -1,6 +1,7 @@
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 import React from 'react'
 import darkTheme from '../../theme'
+import './countrySelect.css'
 
 const styles = {
   container: (base) => ({
@@ -46,8 +47,11 @@ const styles = {
 }
 
 export default function CountrySelect({ countryOptions, selectedCountry, handleChange }) {
+  const uniqueId = `select_${Math.random().toFixed(5).slice(2)}`
+
   return (
     <Select
+      id={uniqueId}
       value={{
         label: selectedCountry,
         value: selectedCountry,
@@ -57,6 +61,24 @@ export default function CountrySelect({ countryOptions, selectedCountry, handleC
       styles={styles}
       style={{
         minWidth: '200px',
+      }}
+      components={{
+        Menu: (props) => <components.Menu {...props} className="menu" />,
+      }}
+      onMenuClose={() => {
+        // Slowly close the menu, as the default behavior is an instant render stop
+        const menuEl = document.querySelector(`#${uniqueId} .menu`)
+        const containerEl = menuEl?.parentElement
+        const clonedMenuEl = menuEl?.cloneNode(true)
+
+        if (!clonedMenuEl) return
+
+        clonedMenuEl.classList.add('menu--close')
+        clonedMenuEl.addEventListener('animationend', () => {
+          containerEl.removeChild(clonedMenuEl)
+        })
+
+        containerEl.appendChild(clonedMenuEl)
       }}
     />
 

@@ -106,19 +106,20 @@ export default function Main() {
           <Box className="widget-row" m={3}>
             <Box className="widget-grid" flex={2}>
               <SmallWidget title="Total Cases">
-                <CompactInformation countByDate={statistics.confirmed[country]} />
+                <CompactInformation countByDate={statistics.confirmed[country]} reverseDirection />
               </SmallWidget>
               <SmallWidget title="Recovered">
-                <CompactInformation countByDate={statistics.recovered[country]} biggerIsBetter />
+                <CompactInformation countByDate={statistics.recovered[country]} />
               </SmallWidget>
               <SmallWidget title="Deaths">
-                <CompactInformation countByDate={statistics.deaths[country]} />
+                <CompactInformation countByDate={statistics.deaths[country]} reverseDirection />
               </SmallWidget>
               <SmallWidget title="Fatality Rate">
                 <CompactInformation
+                  reverseDirection
                   suffix="%"
                   countFromToday={getCurrentFatalityRate()}
-                  countFromLastWeek={getLastWeekFatalityRate()}
+                  previousCount={getLastWeekFatalityRate()}
                 />
               </SmallWidget>
             </Box>
