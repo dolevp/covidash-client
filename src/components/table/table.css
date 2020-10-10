@@ -11,20 +11,18 @@
 }
 
 
-.MuiIconButton-root {
-    padding: 0
-}
-
 .table-pagination-actions-container {
     flex-shrink: 0;
     overflow: visible
 }
 
 .select-text-container {
-    padding-left: 2%;
-    margin-bottom: 1%;
-    display: flex;
+    color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: -6.3%;
+    left: 25%;
     flex: 1;
+    display: flex;
     align-items: center;
     justify-content: flex-start
 }

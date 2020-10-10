@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Line } from 'react-chartjs-2'
-import { Box, LinearProgress, useTheme } from '@material-ui/core'
+import { Box, useTheme } from '@material-ui/core'
 import { keys, values, toPairs } from 'lodash'
 import { numberWithCommas } from '../../utils'
 import './dataGraph.css'
-import { baseLegend, baseTooltip } from '../../theme'
+import { baseTooltip } from '../../theme'
 
 function formatDate(dateString) {
   return new Date(dateString).toLocaleString(undefined, {

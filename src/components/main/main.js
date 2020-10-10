@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Box, CircularProgress, useTheme } from '@material-ui/core'
+import { Box, CircularProgress } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { indexOf, keys, values } from 'lodash'
-import Select from 'react-select'
 import CountryTable from '../countryTable'
 import DataGraph from '../dataGraph'
 import constants from '../../constants'
@@ -143,7 +142,7 @@ export default function Main() {
             <MediumWidget
               mr={3}
               ml={3}
-              title="Worst performing countries"
+              title="Country data"
             >
               <CountryTable
                 statistics={statistics}

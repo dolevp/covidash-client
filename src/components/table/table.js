@@ -73,12 +73,13 @@ export default function Table({
           display="inline"
           color="inherit"
           variant="subtitle1"
+          style={{ float: 'left' }}
         >
           {selectedCountries.length}
           {' '}
           selected
         </Typography>
-        <IconButton aria-label="delete" onClick={() => { setSelectedCountries([]) }}>
+        <IconButton aria-label="delete" color="inherit" onClick={() => { setSelectedCountries([]) }}>
           <HighlightOff />
         </IconButton>
       </Box>

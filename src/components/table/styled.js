@@ -5,6 +5,7 @@ import {
 export const StyledTableContainer = withStyles({
   root: {
     overflow: 'visible',
+    position: 'relative',
   },
 })(TableContainer)
 

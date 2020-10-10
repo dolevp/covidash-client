@@ -1,6 +1,5 @@
 import { toPairs, values } from 'lodash'
 import React, { useMemo } from 'react'
-import { Box } from '@material-ui/core'
 import Table from '../table'
 import { numberWithCommas } from '../../utils'
 

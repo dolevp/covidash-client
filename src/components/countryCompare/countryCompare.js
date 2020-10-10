@@ -5,9 +5,8 @@ import {
   keys, toPairs, values, uniq,
 } from 'lodash'
 import randomColor from 'randomcolor'
-import ContentLoader, {} from 'react-content-loader'
 import { numberWithCommas } from '../../utils'
-import { baseLegend, baseTooltip } from '../../theme'
+import { baseTooltip } from '../../theme'
 
 const CHART_FONT_COLOR = 'rgba(255, 255, 255, 0.6)'
 

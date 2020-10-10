@@ -44,23 +44,23 @@ export default function CompactInformation({
 
       {Boolean(diffPercentage) && (
       <>
-        <Grid container pt={3} alignItems="center" justifyContent="center">
+        <Grid container pt={3} alignItems="center">
           <Grid item xs={1} className="arrow-diff-grid-item">
             <ArrowComponent style={{ color }} />
           </Grid>
           <Grid item xs={1}>
-            <text
+            <div
               className="difference-text"
               style={{ color, display: 'inline' }}
             >
               {diffLabel}
-            </text>
+            </div>
           </Grid>
         </Grid>
         <Box pt={1}>
-          <text className="compact-time-text">
+          <div className="compact-time-text">
             {DIFF_LABEL}
-          </text>
+          </div>
         </Box>
       </>
       )}
