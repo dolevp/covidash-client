@@ -7,14 +7,17 @@ import {
 import randomColor from 'randomcolor'
 import { numberWithCommas } from '../../utils'
 
-function generateRandomColor() {
+function generateColorStack() {
   return randomColor({
+    count: 200,
     luminosity: 'bright',
     format: 'rgba',
-    alpha: 0.3,
+    hue: 'blue',
+    alpha: 0.6,
   })
 }
 const colorByCountry = {}
+const colorStack = generateColorStack()
 
 const chartOptions = {
   responsive: true,
@@ -79,7 +82,7 @@ export default function CountryCompare({ country, selectedCountries, statistics 
 
   const buildDatasetFromCountry = (countryName) => {
     {
-      colorByCountry[countryName] = colorByCountry[countryName] || generateRandomColor()
+      colorByCountry[countryName] = colorByCountry[countryName] || colorStack.pop()
       const baseData = keys(dataLabels)
         .filter((key) => !dataLabels[key].calculated)
         .map((datasetName) => (
@@ -102,7 +105,7 @@ export default function CountryCompare({ country, selectedCountries, statistics 
   return (
     <Box display="flex" alignItems="center" height="90%">
       <Bar
-        height="120%"
+        height="70%"
         width="100%"
         data={data}
         options={chartOptions}

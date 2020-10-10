@@ -68,7 +68,7 @@ export default function Table({
   return (
     <StyledTableContainer>
       {selectedCountries?.length > 0 && (
-      <Box pl="1.5%" mb="1%" display="flex" flex={1} alignItems="center" justifyContent="flex-start">
+      <Box className="select-text-container">
         <Typography
           display="inline"
           color="inherit"

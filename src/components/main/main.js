@@ -131,21 +131,21 @@ export default function Main() {
               overlow="hidden"
               flex={2}
               mt={0}
-              title="Worst performing countries"
-            >
-              <CountryTable
-                statistics={statistics}
-                selectedCountries={selectedCountries}
-                setSelectedCountries={setSelectedCountries}
-              />
-            </BigWidget>
-            <MediumWidget
               title="Select & compare"
             >
               <CountryCompare
                 country={country}
                 selectedCountries={selectedCountries}
                 statistics={statistics}
+              />
+            </BigWidget>
+            <MediumWidget
+              title="Worst performing countries"
+            >
+              <CountryTable
+                statistics={statistics}
+                selectedCountries={selectedCountries}
+                setSelectedCountries={setSelectedCountries}
               />
             </MediumWidget>
           </Box>
