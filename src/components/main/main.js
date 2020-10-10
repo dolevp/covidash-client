@@ -14,20 +14,43 @@ import { BigWidget, MediumWidget, SmallWidget } from '../widgets'
 import CompactInformation from '../compactInformation'
 import { latestDataFromStatistics } from '../../utils'
 import CountrySelect from '../countrySelect'
-import CountryAgainstGlobalRadar from '../countryAgainstGlobalRadar'
+import CountryCompare from '../countryCompare'
 
 const { API_ROOT } = constants
 
+function setCountryFromIP(statisticsData, setCountry) {
+  return axios.get('https://ipapi.co/json/')
+    .then((response) => {
+      const { data } = response
+      const { country_name: countryName, country: countryShort } = data
+
+      if (statisticsData.confirmed[countryName]) {
+        setCountry(countryName)
+      } else if (statisticsData.confirmed[countryShort]) {
+        setCountry(countryShort)
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
 export default function Main() {
+  const [selectedCountries, setSelectedCountries] = useState([])
   const [statistics, setStatistics] = useState()
-  const [country, setCountry] = useState('Israel')
+  const [country, setCountry] = useState('Global')
 
   useEffect(() => {
     axios.get(`${API_ROOT}/statistics/`)
       .then((response) => {
         const { data } = response.data // This is not a typo, but just the combination of
         // how axios works and our response structure
-        setStatistics(data)
+        setCountryFromIP(data, setCountry).then(() => {
+          setStatistics(data)
+        })
+      })
+      .catch((error) => {
+        console.error(error)
       })
   }, [])
 
@@ -70,11 +93,13 @@ export default function Main() {
       <CssBaseline />
       <Box m={3} ml={6} pt={2} flexDirection="row" flex={1} display="flex" alignItems="space-between" justifyContent="space-between">
         <h1 className="app-title">covidash</h1>
+        {statistics && (
         <CountrySelect
           countryOptions={countryOptions}
           handleChange={handleCountryChange}
           selectedCountry={country}
         />
+        )}
       </Box>
       {statistics ? (
         <Box>
@@ -101,16 +126,27 @@ export default function Main() {
               <DataGraph country={country} statistics={statistics} />
             </BigWidget>
           </Box>
-          <Box className="widget-row" m={3}>
+          <Box className="widget-row" m={3} overflow="hidden">
             <BigWidget
+              overlow="hidden"
               flex={2}
               mt={0}
               title="Worst performing countries"
             >
-              <CountryTable statistics={statistics} />
+              <CountryTable
+                statistics={statistics}
+                selectedCountries={selectedCountries}
+                setSelectedCountries={setSelectedCountries}
+              />
             </BigWidget>
-            <MediumWidget mt={0}>
-              <CountryAgainstGlobalRadar />
+            <MediumWidget
+              title="Compare countries"
+            >
+              <CountryCompare
+                country={country}
+                selectedCountries={selectedCountries}
+                statistics={statistics}
+              />
             </MediumWidget>
           </Box>
         </Box>

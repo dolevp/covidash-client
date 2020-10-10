@@ -29,7 +29,7 @@ export function SmallWidget({ children, ...props }) {
 
 export function MediumWidget({ children, ...props }) {
   return (
-    <Widget className="medium-widget" {...props}>
+    <Widget mb={3} m={0} className="medium-widget" {...props}>
       {children}
     </Widget>
   )

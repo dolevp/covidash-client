@@ -4,7 +4,9 @@ import { values, indexOf } from 'lodash'
 import './compactInformation.css'
 import { numberWithCommas } from '../../utils'
 
-export default function CompactInformation({ countByDate, biggerIsBetter, countFromToday, countFromLastWeek, suffix = '' }) {
+export default function CompactInformation({
+  countByDate, biggerIsBetter, countFromToday, countFromLastWeek, suffix = '',
+}) {
   const theme = useTheme()
   const { common: { red, green } } = theme.palette
   const counts = values(countByDate)

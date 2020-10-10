@@ -7,3 +7,7 @@ export function numberWithCommas(x) {
 export function latestDataFromStatistics(countByDate) {
   return Math.max(...values(countByDate))
 }
+
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}

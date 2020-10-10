@@ -1,20 +1,34 @@
 import React from 'react'
 
 import MaUTable from '@material-ui/core/Table'
-import { TableSortLabel,
+import {
+  TableSortLabel,
+  Box,
   TableBody,
   TableFooter,
   TableHead,
-  TableRow } from '@material-ui/core'
-import { usePagination,
+  TableRow,
+  Checkbox,
+  Typography,
+  IconButton,
+} from '@material-ui/core'
+import { HighlightOff } from '@material-ui/icons'
+import {
+  usePagination,
   useSortBy,
-  useTable } from 'react-table'
+  useTable,
+} from 'react-table'
 import './table.css'
+import { without } from 'lodash'
 import TablePaginationActions from './tablePaginationActions'
-import { StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer } from './styled'
+import {
+  StyledCell, StyledHeaderCell, StyledPagination, StyledTableContainer,
+} from './styled'
 import { numberWithCommas } from '../../utils'
 
-export default function Table({ columns, data, useTableExtraProps }) {
+export default function Table({
+  columns, data, selectedCountries, setSelectedCountries, ...props
+}) {
   const {
     getTableProps,
     headerGroups,
@@ -26,12 +40,20 @@ export default function Table({ columns, data, useTableExtraProps }) {
     {
       columns,
       data,
-      ...useTableExtraProps,
+      ...props,
     },
     useSortBy,
     usePagination,
 
   )
+
+  const handleCountrySelect = (e, countryName) => {
+    if (e.target.checked) {
+      setSelectedCountries([...selectedCountries, countryName])
+    } else {
+      setSelectedCountries(without(selectedCountries, countryName))
+    }
+  }
 
   const handleChangePage = (event, newPage) => {
     gotoPage(newPage)
@@ -45,6 +67,22 @@ export default function Table({ columns, data, useTableExtraProps }) {
 
   return (
     <StyledTableContainer>
+      {selectedCountries?.length > 0 && (
+      <Box pl="1.5%" mb="1%" display="flex" flex={1} alignItems="center" justifyContent="flex-start">
+        <Typography
+          display="inline"
+          color="inherit"
+          variant="subtitle1"
+        >
+          {selectedCountries.length}
+          {' '}
+          selected
+        </Typography>
+        <IconButton aria-label="delete" onClick={() => { setSelectedCountries([]) }}>
+          <HighlightOff />
+        </IconButton>
+      </Box>
+      )}
       <MaUTable {...getTableProps()}>
         <TableHead>
           {headerGroups.map((headerGroup) => (
@@ -68,8 +106,14 @@ export default function Table({ columns, data, useTableExtraProps }) {
             prepareRow(row)
             return (
               <TableRow {...row.getRowProps()}>
-                {row.cells.map(transformCellValue).map((cell) => (
+                {row.cells.map(transformCellValue).map((cell, i) => (
                   <StyledCell {...cell.getCellProps()}>
+                    {i === 0 && (
+                    <Checkbox
+                      checked={selectedCountries.includes(cell.value)}
+                      onChange={(e) => { handleCountrySelect(e, cell.value) }}
+                    />
+                    )}
                     {cell.render('Cell')}
                   </StyledCell>
                 ))}

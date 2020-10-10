@@ -54,6 +54,8 @@ export default function DataGraph({ statistics, country }) {
   }
 
   const lineChartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
     tooltips: {
       intersect: false,
       mode: 'index',

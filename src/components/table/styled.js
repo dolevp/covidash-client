@@ -1,4 +1,6 @@
-import { TableCell, TableContainer, TablePagination, withStyles } from '@material-ui/core'
+import {
+  TableCell, TableContainer, TablePagination, withStyles,
+} from '@material-ui/core'
 
 export const StyledTableContainer = withStyles({
   root: {

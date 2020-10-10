@@ -1,5 +1,6 @@
 import { toPairs, values } from 'lodash'
 import React, { useMemo } from 'react'
+import { Box } from '@material-ui/core'
 import Table from '../table'
 import { numberWithCommas } from '../../utils'
 
@@ -28,7 +29,7 @@ function transformStatisticsToTableData(statistics) {
     }))
 }
 
-export default function CountryTable({ statistics }) {
+export default function CountryTable({ statistics, selectedCountries, setSelectedCountries }) {
   const data = useMemo(
     () => transformStatisticsToTableData(statistics),
     [statistics],
@@ -68,11 +69,11 @@ export default function CountryTable({ statistics }) {
 
   return (
     <Table
+      selectedCountries={selectedCountries}
+      setSelectedCountries={setSelectedCountries}
       columns={columns}
       data={data}
-      useTableExtraProps={{
-        initialState,
-      }}
+      initialState={initialState}
     />
   )
 }
