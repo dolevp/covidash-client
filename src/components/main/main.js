@@ -126,7 +126,7 @@ export default function Main() {
               <DataGraph country={country} statistics={statistics} />
             </BigWidget>
           </Box>
-          <Box className="widget-row" m={3} overflow="hidden">
+          <Box className="widget-row" m={3}>
             <BigWidget
               overlow="hidden"
               flex={2}

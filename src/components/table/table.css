@@ -6,16 +6,22 @@
 }
 
 .MuiTablePagination-root:last-child {
-    border-bottom: none
+    border-bottom: none;
+    overflow: visible
+}
+
+
+.MuiIconButton-root {
+    padding: 0
 }
 
 .table-pagination-actions-container {
     flex-shrink: 0;
-    margin-right: 100%
+    overflow: visible
 }
 
 .select-text-container {
-    padding-left: 1.5%;
+    padding-left: 2%;
     margin-bottom: 1%;
     display: flex;
     flex: 1;

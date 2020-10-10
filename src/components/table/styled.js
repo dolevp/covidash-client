@@ -16,6 +16,7 @@ export const StyledPagination = withStyles({
 
 export const StyledHeaderCell = withStyles({
   root: {
+    minWidth: '135px',
     borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
     fontWeight: '900',
   },
