@@ -75,9 +75,10 @@ export default function Table({
           variant="subtitle1"
           style={{ float: 'left' }}
         >
+          {' ('}
           {selectedCountries.length}
           {' '}
-          selected
+          selected)
         </Typography>
         <IconButton aria-label="delete" color="inherit" onClick={() => { setSelectedCountries([]) }}>
           <HighlightOff />
