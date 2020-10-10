@@ -76,7 +76,6 @@ export default function DataGraph({ statistics, country }) {
         ticks: {
           fontColor: GRAPH_FONT_COLOR,
           beginAtZero: true,
-          responsive: true,
           callback(value) {
             return numberWithCommas(value)
           },

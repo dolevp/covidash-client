@@ -14,37 +14,40 @@ function generateRandomColor() {
     alpha: 0.3,
   })
 }
-const colorByCountry = {
-}
+const colorByCountry = {}
 
-const options = {
+const chartOptions = {
   responsive: true,
   maintainAspectRatio: true,
-  // tooltips: {
-  //   callbacks: {
-  //     title(tooltipItems, graph) {
-  //       return graph.datasets[tooltipItems[0].datasetIndex].label
-  //     },
-  //     label(tooltipItem, graph) {
-  //       const dataset = graph.datasets[tooltipItem.datasetIndex]
-  //       const value = numberWithCommas(dataset.data[tooltipItem.index])
-  //       const label = graph.labels[tooltipItem.index]
-  //       return `${value} ${label}`
-  //     },
-  //   },
-  // },
-  // scale: {
-  //   gridLines: {
-  //     color: 'rgba(255, 255, 255, 0.2)',
-  //   },
-  //   ticks: {
-  //     fontColor: 'transparent',
-  //     backdropColor: 'transparent',
-  //     callback(value) {
-  //       return numberWithCommas(value)
-  //     },
-  //   },
-  // },
+  tooltips: {
+    intersect: false,
+    mode: 'index',
+    callbacks: {
+      label(tooltipItem, graph) {
+        const dataset = graph.datasets[tooltipItem.datasetIndex]
+        const value = numberWithCommas(dataset.data[tooltipItem.index])
+        return `${dataset.label}: ${value} `
+      },
+    },
+  },
+  scales: {
+    yAxes: [{
+      gridLines: {
+        color: 'rgba(255, 255, 255, 0.08)',
+      },
+      ticks: {
+        beginAtZero: true,
+        callback(value) {
+          return numberWithCommas(value)
+        },
+      },
+    }],
+    xAxes: [{
+      gridLines: {
+        display: false,
+      },
+    }],
+  },
 }
 
 export default function CountryCompare({ country, selectedCountries, statistics }) {
@@ -99,10 +102,10 @@ export default function CountryCompare({ country, selectedCountries, statistics 
   return (
     <Box display="flex" alignItems="center" height="90%">
       <Bar
-        height="100%"
+        height="120%"
         width="100%"
         data={data}
-        options={options}
+        options={chartOptions}
       />
     </Box>
   )

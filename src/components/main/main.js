@@ -140,7 +140,7 @@ export default function Main() {
               />
             </BigWidget>
             <MediumWidget
-              title="Compare countries"
+              title="Select & compare"
             >
               <CountryCompare
                 country={country}
