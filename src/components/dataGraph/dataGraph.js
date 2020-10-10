@@ -4,6 +4,7 @@ import { Box, LinearProgress, useTheme } from '@material-ui/core'
 import { keys, values, toPairs } from 'lodash'
 import { numberWithCommas } from '../../utils'
 import './dataGraph.css'
+import { baseTooltip } from '../../theme'
 
 function formatDate(dateString) {
   return new Date(dateString).toLocaleString(undefined, {
@@ -19,27 +20,28 @@ export default function DataGraph({ statistics, country }) {
   const { common: colors } = theme.palette
 
   const datasetBase = {
-    backgroundColor: [
-      'transparent',
-    ],
     borderWidth: 2,
     pointStrokeColor: 'transparent',
     pointColor: 'transparent',
     pointRadius: 0,
     pointHitRadius: 10,
+    fill: false,
   }
 
   const statCategories = {
     confirmed: {
       borderColor: colors.blue,
+      backgroundColor: colors.blue,
       label: '# of Cases',
     },
     recovered: {
       borderColor: colors.green,
+      backgroundColor: colors.green,
       label: '# of Recoveries',
     },
     deaths: {
       borderColor: colors.red,
+      backgroundColor: colors.red,
       label: '# of Deaths',
     },
   }
@@ -57,8 +59,7 @@ export default function DataGraph({ statistics, country }) {
     responsive: true,
     maintainAspectRatio: true,
     tooltips: {
-      intersect: false,
-      mode: 'index',
+      ...baseTooltip,
       callbacks: {
         label(tooltipItem, graph) {
           const dataset = graph.datasets[tooltipItem.datasetIndex]

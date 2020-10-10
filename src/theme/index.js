@@ -22,4 +22,14 @@ const darkTheme = createMuiTheme({
   },
 })
 
+export const baseTooltip = {
+  position: 'nearest',
+  intersect: false,
+  mode: 'index',
+  titleFontColor: '#212121',
+  bodyFontColor: '#212121',
+  backgroundColor: 'white',
+  titleFontSize: 16,
+  bodyFontSize: 16,
+}
 export default darkTheme

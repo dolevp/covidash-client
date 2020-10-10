@@ -140,6 +140,8 @@ export default function Main() {
               />
             </BigWidget>
             <MediumWidget
+              mr={3}
+              ml={3}
               title="Worst performing countries"
             >
               <CountryTable

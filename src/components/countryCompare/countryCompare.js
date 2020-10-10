@@ -7,6 +7,7 @@ import {
 import randomColor from 'randomcolor'
 import ContentLoader, {} from 'react-content-loader'
 import { numberWithCommas } from '../../utils'
+import { baseTooltip } from '../../theme'
 
 const CHART_FONT_COLOR = 'rgba(255, 255, 255, 0.6)'
 
@@ -26,8 +27,7 @@ const chartOptions = {
   responsive: true,
   maintainAspectRatio: true,
   tooltips: {
-    intersect: false,
-    mode: 'index',
+    ...baseTooltip,
     callbacks: {
       label(tooltipItem, graph) {
         const dataset = graph.datasets[tooltipItem.datasetIndex]
@@ -42,6 +42,7 @@ const chartOptions = {
         color: 'rgba(255, 255, 255, 0.08)',
       },
       ticks: {
+        fontSize: 14,
         fontColor: CHART_FONT_COLOR,
         beginAtZero: true,
         callback(value) {
@@ -54,6 +55,7 @@ const chartOptions = {
         display: false,
       },
       ticks: {
+        fontSize: 14,
         fontColor: CHART_FONT_COLOR,
       },
     }],
