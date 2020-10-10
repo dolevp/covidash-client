@@ -7,7 +7,7 @@ import {
 import randomColor from 'randomcolor'
 import ContentLoader, {} from 'react-content-loader'
 import { numberWithCommas } from '../../utils'
-import { baseTooltip } from '../../theme'
+import { baseLegend, baseTooltip } from '../../theme'
 
 const CHART_FONT_COLOR = 'rgba(255, 255, 255, 0.6)'
 
@@ -24,6 +24,9 @@ const colorByCountry = {}
 const colorStack = generateColorStack()
 
 const chartOptions = {
+  animation: {
+    duration: 2000,
+  },
   responsive: true,
   maintainAspectRatio: true,
   tooltips: {
@@ -59,6 +62,12 @@ const chartOptions = {
         fontColor: CHART_FONT_COLOR,
       },
     }],
+  },
+  legend: {
+    labels: {
+      fontColor: CHART_FONT_COLOR,
+      fontSize: 14,
+    },
   },
 }
 

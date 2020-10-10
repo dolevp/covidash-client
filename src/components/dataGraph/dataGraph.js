@@ -4,7 +4,7 @@ import { Box, LinearProgress, useTheme } from '@material-ui/core'
 import { keys, values, toPairs } from 'lodash'
 import { numberWithCommas } from '../../utils'
 import './dataGraph.css'
-import { baseTooltip } from '../../theme'
+import { baseLegend, baseTooltip } from '../../theme'
 
 function formatDate(dateString) {
   return new Date(dateString).toLocaleString(undefined, {
@@ -56,6 +56,9 @@ export default function DataGraph({ statistics, country }) {
   }
 
   const lineChartOptions = {
+    animation: {
+      duration: 1500,
+    },
     responsive: true,
     maintainAspectRatio: true,
     tooltips: {
@@ -92,6 +95,12 @@ export default function DataGraph({ statistics, country }) {
           fontSize: 14,
         },
       }],
+    },
+    legend: {
+      labels: {
+        fontColor: GRAPH_FONT_COLOR,
+        fontSize: 14,
+      },
     },
   }
 
