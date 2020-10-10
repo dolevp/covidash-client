@@ -1,16 +1,19 @@
-import React, { useMemo } from 'react'
-import { Bar, Radar } from 'react-chartjs-2'
-import { Box, useTheme } from '@material-ui/core'
+import React from 'react'
+import { Bar } from 'react-chartjs-2'
+import { Box } from '@material-ui/core'
 import {
   keys, toPairs, values, uniq,
 } from 'lodash'
 import randomColor from 'randomcolor'
+import ContentLoader, {} from 'react-content-loader'
 import { numberWithCommas } from '../../utils'
+
+const CHART_FONT_COLOR = 'rgba(255, 255, 255, 0.6)'
 
 function generateColorStack() {
   return randomColor({
     count: 200,
-    luminosity: 'bright',
+    luminosity: 'light',
     format: 'rgba',
     hue: 'blue',
     alpha: 0.6,
@@ -39,6 +42,7 @@ const chartOptions = {
         color: 'rgba(255, 255, 255, 0.08)',
       },
       ticks: {
+        fontColor: CHART_FONT_COLOR,
         beginAtZero: true,
         callback(value) {
           return numberWithCommas(value)
@@ -48,6 +52,9 @@ const chartOptions = {
     xAxes: [{
       gridLines: {
         display: false,
+      },
+      ticks: {
+        fontColor: CHART_FONT_COLOR,
       },
     }],
   },

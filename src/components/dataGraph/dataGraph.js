@@ -12,7 +12,7 @@ function formatDate(dateString) {
   })
 }
 
-const GRAPH_FONT_COLOR = 'rgba(255, 255, 255, 0.2)'
+const GRAPH_FONT_COLOR = 'rgba(255, 255, 255, 0.4)'
 
 export default function DataGraph({ statistics, country }) {
   const theme = useTheme()
@@ -75,6 +75,7 @@ export default function DataGraph({ statistics, country }) {
         },
         ticks: {
           fontColor: GRAPH_FONT_COLOR,
+          fontSize: 14,
           beginAtZero: true,
           callback(value) {
             return numberWithCommas(value)
@@ -87,6 +88,7 @@ export default function DataGraph({ statistics, country }) {
         },
         ticks: {
           fontColor: GRAPH_FONT_COLOR,
+          fontSize: 14,
         },
       }],
     },
