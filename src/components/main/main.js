@@ -39,7 +39,6 @@ export default function Main() {
   const [statistics, setStatistics] = useState()
   const [country, setCountry] = useState('Global')
 
-  console.log(process.env)
   useEffect(() => {
     axios.get(`${API_ROOT}/statistics/`)
       .then((response) => {
