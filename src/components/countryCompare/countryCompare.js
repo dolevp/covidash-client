@@ -15,7 +15,6 @@ function generateColorStack() {
     count: 200,
     luminosity: 'light',
     format: 'rgba',
-    hue: 'blue',
     alpha: 0.6,
   })
 }
@@ -27,7 +26,7 @@ const chartOptions = {
     duration: 2000,
   },
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   tooltips: {
     ...baseTooltip,
     callbacks: {

@@ -60,7 +60,7 @@ export default function DataGraph({ statistics, country }) {
       duration: 1500,
     },
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     tooltips: {
       ...baseTooltip,
       callbacks: {
