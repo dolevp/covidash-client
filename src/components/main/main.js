@@ -90,74 +90,76 @@ export default function Main() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box m={3} ml={6} pt={2} flexDirection="row" flex={1} display="flex" alignItems="space-between" justifyContent="space-between">
-        <h1 className="app-title">covidash</h1>
-        {statistics && (
-        <CountrySelect
-          countryOptions={countryOptions}
-          handleChange={handleCountryChange}
-          selectedCountry={country}
-        />
-        )}
-      </Box>
-      {statistics ? (
-        <Box>
-          <Box className="widget-row" m={3}>
-            <Box className="widget-grid" flex={2}>
-              <SmallWidget title="Total Cases">
-                <CompactInformation countByDate={statistics.confirmed[country]} reverseDirection />
-              </SmallWidget>
-              <SmallWidget title="Recovered">
-                <CompactInformation countByDate={statistics.recovered[country]} />
-              </SmallWidget>
-              <SmallWidget title="Deaths">
-                <CompactInformation countByDate={statistics.deaths[country]} reverseDirection />
-              </SmallWidget>
-              <SmallWidget title="Fatality Rate">
-                <CompactInformation
-                  reverseDirection
-                  suffix="%"
-                  countFromToday={getCurrentFatalityRate()}
-                  previousCount={getLastWeekFatalityRate()}
-                />
-              </SmallWidget>
-            </Box>
-            <BigWidget flex={3} title="Reported data over time">
-              <DataGraph country={country} statistics={statistics} />
-            </BigWidget>
-          </Box>
-          <Box className="widget-row" m={3}>
-            <BigWidget
-              overlow="hidden"
-              flex={2}
-              mt={0}
-              title="Select & compare"
-            >
-              <CountryCompare
-                country={country}
-                selectedCountries={selectedCountries}
-                statistics={statistics}
-              />
-            </BigWidget>
-            <MediumWidget
-              mr={3}
-              ml={3}
-              title="Country data"
-            >
-              <CountryTable
-                statistics={statistics}
-                selectedCountries={selectedCountries}
-                setSelectedCountries={setSelectedCountries}
-              />
-            </MediumWidget>
-          </Box>
+      <Box className="container">
+        <Box m={3} ml={6} pt={2} flexDirection="row" flex={1} display="flex" alignItems="space-between" justifyContent="space-between">
+          <h1 className="app-title">covidash</h1>
+          {statistics && (
+            <CountrySelect
+              countryOptions={countryOptions}
+              handleChange={handleCountryChange}
+              selectedCountry={country}
+            />
+          )}
         </Box>
-      )
-        : (
-          <Box className="loading-container">
-            <CircularProgress size={100} />
+        {statistics ? (
+          <Box>
+            <Box className="widget-row" m={3}>
+              <Box className="widget-grid" flex={2}>
+                <SmallWidget title="Total Cases">
+                  <CompactInformation countByDate={statistics.confirmed[country]} reverseDirection />
+                </SmallWidget>
+                <SmallWidget title="Recovered">
+                  <CompactInformation countByDate={statistics.recovered[country]} />
+                </SmallWidget>
+                <SmallWidget title="Deaths">
+                  <CompactInformation countByDate={statistics.deaths[country]} reverseDirection />
+                </SmallWidget>
+                <SmallWidget title="Fatality Rate">
+                  <CompactInformation
+                    reverseDirection
+                    suffix="%"
+                    countFromToday={getCurrentFatalityRate()}
+                    previousCount={getLastWeekFatalityRate()}
+                  />
+                </SmallWidget>
+              </Box>
+              <BigWidget flex={3} title="Reported data over time">
+                <DataGraph country={country} statistics={statistics} />
+              </BigWidget>
+            </Box>
+            <Box className="widget-row" m={3}>
+              <BigWidget
+                overlow="hidden"
+                flex={2}
+                mt={0}
+                title="Select & compare"
+              >
+                <CountryCompare
+                  country={country}
+                  selectedCountries={selectedCountries}
+                  statistics={statistics}
+                />
+              </BigWidget>
+              <MediumWidget
+                mr={3}
+                ml={3}
+                title="Country data"
+              >
+                <CountryTable
+                  statistics={statistics}
+                  selectedCountries={selectedCountries}
+                  setSelectedCountries={setSelectedCountries}
+                />
+              </MediumWidget>
+            </Box>
           </Box>
-        )}
+        )
+          : (
+            <Box className="loading-container">
+              <CircularProgress size={100} />
+            </Box>
+          )}
+      </Box>
     </ThemeProvider>
   )
 }

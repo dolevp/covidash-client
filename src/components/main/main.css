@@ -1,3 +1,8 @@
+html {
+    flex: 1;
+    display: flex;
+}
+
 .widget-row {
     flex: 1;
     display: flex;

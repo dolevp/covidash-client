@@ -57,8 +57,11 @@ export default function DataGraph({ statistics, country }) {
 
   const lineChartOptions = {
     animation: {
-      duration: 1500,
+      duration: 3000,
     },
+    responsive: true,
+    responsiveAnimationDuration: 3000,
+    maintainAspectRatio: false,
     tooltips: {
       ...baseTooltip,
       callbacks: {
@@ -103,7 +106,7 @@ export default function DataGraph({ statistics, country }) {
   }
 
   return (
-    <Box>
+    <Box display="flex" flex={1} height="100%">
       <Line
         data={data}
         options={lineChartOptions}
