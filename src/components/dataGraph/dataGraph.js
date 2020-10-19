@@ -59,8 +59,6 @@ export default function DataGraph({ statistics, country }) {
     animation: {
       duration: 1500,
     },
-    responsive: true,
-    maintainAspectRatio: false,
     tooltips: {
       ...baseTooltip,
       callbacks: {
@@ -107,8 +105,6 @@ export default function DataGraph({ statistics, country }) {
   return (
     <Box>
       <Line
-        height="70%"
-        width="100%"
         data={data}
         options={lineChartOptions}
       />

@@ -25,8 +25,6 @@ const chartOptions = {
   animation: {
     duration: 2000,
   },
-  responsive: true,
-  maintainAspectRatio: false,
   tooltips: {
     ...baseTooltip,
     callbacks: {
@@ -119,7 +117,7 @@ export default function CountryCompare({ country, selectedCountries, statistics 
     datasets: countriesToCompare.map(buildDatasetFromCountry),
   }
   return (
-    <Box>
+    <Box display="flex" alignItems="center" height="90%">
       <Bar
         height="70%"
         width="100%"
