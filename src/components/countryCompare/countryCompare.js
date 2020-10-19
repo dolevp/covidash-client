@@ -119,7 +119,7 @@ export default function CountryCompare({ country, selectedCountries, statistics 
     datasets: countriesToCompare.map(buildDatasetFromCountry),
   }
   return (
-    <Box display="flex" alignItems="center" height="90%">
+    <Box>
       <Bar
         height="70%"
         width="100%"

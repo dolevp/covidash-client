@@ -1,5 +1,5 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
+import { Bar, Line } from 'react-chartjs-2'
 import { Box, useTheme } from '@material-ui/core'
 import { keys, values, toPairs } from 'lodash'
 import { numberWithCommas } from '../../utils'
@@ -107,6 +107,8 @@ export default function DataGraph({ statistics, country }) {
   return (
     <Box>
       <Line
+        height="70%"
+        width="100%"
         data={data}
         options={lineChartOptions}
       />
